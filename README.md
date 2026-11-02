@@ -8,6 +8,11 @@ Capture → annotate → copy. Paste it straight into LINE, Slack, or any chat �
 
 ![SnapMark editor](docs/images/editor.png)
 
+<p align="center">
+  <a href="https://github.com/madara1150/snapmark-macos/raw/main/dist/SnapMark.dmg"><b>⬇️ Download SnapMark.dmg</b></a><br>
+  macOS 12+ · Apple Silicon &amp; Intel · ~180 KB
+</p>
+
 ---
 
 ## ภาษาไทย
@@ -28,7 +33,17 @@ Capture → annotate → copy. Paste it straight into LINE, Slack, or any chat �
 ### ตัวอย่างรูปที่ได้หลัง Copy
 ![Result](docs/images/result.png)
 
-### ติดตั้ง
+### ดาวน์โหลดและติดตั้ง (แนะนำ)
+1. ดาวน์โหลด **[SnapMark.dmg](https://github.com/madara1150/snapmark-macos/raw/main/dist/SnapMark.dmg)**
+2. เปิดไฟล์ .dmg แล้วลาก **SnapMark** ไปวางที่โฟลเดอร์ **Applications**
+3. เปิดแอปครั้งแรก: แอปนี้ไม่ได้เซ็นด้วย Apple Developer ID macOS จึงจะเตือนว่า *"ไม่สามารถตรวจสอบผู้พัฒนาได้"* ให้กด **Done** แล้วไปที่
+   **System Settings → Privacy & Security** เลื่อนลงไปจะเจอข้อความเกี่ยวกับ SnapMark ให้กด **Open Anyway**
+   หรือจะรันคำสั่งนี้ใน Terminal แทนก็ได้:
+   ```bash
+   xattr -dr com.apple.quarantine /Applications/SnapMark.app
+   ```
+
+### Build เอง
 ต้องใช้ macOS 12 ขึ้นไป และต้องมี Command Line Tools ของ Xcode (`xcode-select --install`)
 
 ```bash
@@ -37,6 +52,8 @@ cd snapmark-macos
 ./build.sh --install
 open ~/Applications/SnapMark.app
 ```
+
+ถ้าต้องการสร้างไฟล์ .dmg เอง ให้รัน `./build.sh --dmg` ไฟล์จะอยู่ที่ `dist/SnapMark.dmg`
 
 ครั้งแรกที่แคป macOS จะขอสิทธิ์ **Screen Recording** ให้เปิดสิทธิ์ที่
 **System Settings → Privacy & Security → Screen & System Audio Recording → SnapMark** แล้วปิดแอปและเปิดใหม่
@@ -60,7 +77,7 @@ open ~/Applications/SnapMark.app
 - **ดู log:** อยู่ที่ `~/Library/Logs/SnapMark.log`
 
 ### ถอนการติดตั้ง
-ปิดแอปจากไอคอนบนแถบเมนู แล้วลบ `~/Applications/SnapMark.app`
+ปิดแอปจากไอคอนบนแถบเมนู แล้วลบ `SnapMark.app` ออกจาก `/Applications` (หรือ `~/Applications` ถ้า build เอง)
 
 ---
 
@@ -82,7 +99,17 @@ The built-in macOS screenshot tool has Markup, but if you want to annotate a scr
 ### Example output after Copy
 ![Result](docs/images/result.png)
 
-### Install
+### Download & install (recommended)
+1. Download **[SnapMark.dmg](https://github.com/madara1150/snapmark-macos/raw/main/dist/SnapMark.dmg)**
+2. Open the .dmg and drag **SnapMark** into **Applications**
+3. First launch: the app isn't signed with an Apple Developer ID, so macOS will say it *"cannot verify the developer"*. Click **Done**, then go to
+   **System Settings → Privacy & Security**, scroll down to the message about SnapMark, and click **Open Anyway**.
+   Or run this in Terminal instead:
+   ```bash
+   xattr -dr com.apple.quarantine /Applications/SnapMark.app
+   ```
+
+### Build from source
 Requires macOS 12+ and the Xcode Command Line Tools (`xcode-select --install`).
 
 ```bash
@@ -91,6 +118,8 @@ cd snapmark-macos
 ./build.sh --install
 open ~/Applications/SnapMark.app
 ```
+
+To build the .dmg yourself, run `./build.sh --dmg`. The output goes to `dist/SnapMark.dmg`.
 
 The first time you capture, macOS asks for **Screen Recording** permission. Turn it on in
 **System Settings → Privacy & Security → Screen & System Audio Recording → SnapMark**, then quit and reopen the app.
@@ -114,4 +143,4 @@ The first time you capture, macOS asks for **Screen Recording** permission. Turn
 - **Logs:** `~/Library/Logs/SnapMark.log`
 
 ### Uninstall
-Quit the app from the menu bar icon, then delete `~/Applications/SnapMark.app`.
+Quit the app from the menu bar icon, then delete `SnapMark.app` from `/Applications` (or `~/Applications` if you built it yourself).
